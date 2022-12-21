@@ -1,0 +1,120 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+const int jum=4; 
+
+struct Mahasiswa{
+    string nim,nama;
+    float nilai[jum];
+};
+
+float hitungRatarata(float nilai[]) {
+    float hasil = 0;
+        for (int i = 0; i < jum; i++) {
+            hasil += nilai[i];
+        }
+    return hasil / jum;
+}
+
+int main(){
+    cout<<"\n                  UJIAN AKHIR SEMESTER\n"
+        <<"========================================================\n"
+	    <<"Nama : Serevina Sherly Maulida\n"
+	    <<"NIM  : 1227050123\n"
+	    <<"========================================================\n"
+        <<"\nìBismillaahirrahmaanirrahiim, Saya serevina, berjanji  akan\n mengerjakan  soal  UAS  ini  dengan sungguh-sungguh dan\n maksimal dengan usaha sendiri, TIDAK  melihat pekerjaan\n orang lain, serta mematuhi peraturan selama ujian. Jika\n saya  tidak  menepati  janji  ini, saya yang menanggung\n risikonyaî\n";
+
+    int kodeJurusan, ulang;
+    string matkulIF[]={"Dasar Pemrograman", "Struktur Data", "Algoritma Pemrograman", "Rekayasa Perangkat Lunak"};
+    string matkulIlkom[]={"Rekayasa Perangkat Lunak", "Jaringan Komputer", "Sistem Cerdas", "Sistem Digital"};
+    string matkulSI[]={"Rekayasa Sistem Informasi", "Algoritma Pemrograman", "Struktur Data", "Konsep Sistem Informasi"};
+
+    do{
+        cout<<"\n========================================================\n"
+            <<"KODE JURUSAN\n"
+            <<"========================================================\n"
+            <<"teknik Informatika  : 1001\n"
+            <<"Ilmu Komputer       : 2002\n"
+            <<"Sistem Informasi    : 3003\n"
+            <<"========================================================\n"
+            <<"Masukan Kode Jurusan (1001/2002/3003) : "; cin>>kodeJurusan;
+
+        switch (kodeJurusan){
+        case 1001:
+            cout<<"========================================="<<endl;
+		 	cout <<"JURUSAN TEKNIK INFORMATIKA \n";
+		 	cout<<"========================================="<<endl;
+            break;
+
+        case 2002:
+            cout<<"========================================="<<endl;
+	  		cout <<"JURUSAN ILMU KOMPUTER \n";
+	  		cout<<"========================================="<<endl;
+            break;
+
+        case 3003:
+            cout<<"========================================="<<endl;
+	  		cout <<"JURUSAN SISTEM INFORMASI \n";
+			cout<<"========================================="<<endl;
+            break;
+        
+        default:
+            cout<<"Pilihan Yang Anda Pilih Tidak Tersedia!";
+            break;
+        }
+
+        int jumlahMhs;
+        cout << "Masukan jumlah mahasiswa yang diinputkan: "; cin >> jumlahMhs;
+        Mahasiswa mahasiswa[jumlahMhs];
+
+        for (int i = 0; i < jumlahMhs; i++) {
+            cout << "Data mahasiswa ke-" << i + 1 << endl;
+            cout << "NIM\t: "; cin >> mahasiswa[i].nim;
+            cout << "Nama\t: "; cin >> mahasiswa[i].nama;
+            cout << "Masukan Nilai Skala 0-100" << endl;
+            for (int j = 0; j < jum; j++) {
+                if(kodeJurusan == 1001){
+                    cout << matkulIF[j]<< ": ";
+                    cin >> mahasiswa[i].nilai[j];
+                } else if(kodeJurusan == 2002){
+                    cout << matkulIlkom[j]<< ": ";
+                    cin >> mahasiswa[i].nilai[j];
+                } else if(kodeJurusan == 3003){
+                    cout << matkulSI[j]<< ": ";
+                    cin >> mahasiswa[i].nilai[j];
+                }
+            }
+        }
+
+        cout<<"\n========================================================\n"
+         <<"DATA ANDA\n"
+                <<"========================================================\n";
+        for (int i = 0; i < jumlahMhs; i++){
+            cout << "Data mahasiswa ke-" << i + 1 << endl;
+            cout << "NIM\t: " << mahasiswa[i].nim << endl;
+            cout << "Nama\t: " << mahasiswa[i].nama << endl;
+            cout << "Masukan Nilai Skala 0-100" << endl;
+            for (int j = 0; j < jum; j++) {
+                if(kodeJurusan == 1001){
+                    cout << matkulIF[j] << ": " << mahasiswa[i].nilai[j] << endl;
+                } else if(kodeJurusan == 2002){
+                    cout << matkulIlkom[j] << ": " << mahasiswa[i].nilai[j] << endl;
+                } else if(kodeJurusan == 3003){
+                    cout << matkulSI[j] << ": " << mahasiswa[i].nilai[j] << endl;
+                }
+            }
+            cout<<"=========================================================\n";
+            cout << "Rata-rata Nilai Akhir: " << hitungRatarata(mahasiswa[i].nilai) << endl;
+        }
+
+        cout<<"========================================================\n"
+            <<" INGIN MENGULANG PROGRAM?\n"
+            <<"0-keluar\n"
+            <<"1-ulangi\n"
+            <<" Input Pilihan: "; cin>>ulang;
+    }while(ulang == 1);
+    cout<<"\n========================================================\n"
+        <<"Terimakasih!\n"
+        <<"========================================================\n";
+}
